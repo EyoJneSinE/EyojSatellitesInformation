@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -27,11 +30,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+    kapt {
+        useBuildCache = false
+        correctErrorTypes = false
+        generateStubs = true
+    }
+    packaging {
+        resources {
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
     }
 }
 
@@ -45,4 +62,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.hilt.navigation.fragment)
+
+    // hilt
+    //kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    annotationProcessor (libs.hilt.android.compiler)
+
+    implementation(project(":eyojnavigation"))
 }
