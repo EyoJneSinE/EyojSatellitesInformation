@@ -2,6 +2,6 @@ package com.eniskaner.eyojnavigation
 
 import androidx.navigation.NavGraphBuilder
 
-interface EyojNavigation {
+interface NavigationGraph {
     fun addNav(navGraphBuilder: NavGraphBuilder)
 }
