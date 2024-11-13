@@ -1,0 +1,11 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="satellite_first_screen">Satellite First Screen</string>
+    <string name="b_next">Next</string>
+    <string name="satellite_second_screen">Satellite Second Screen</string>
+    <string name="b_previous">Previous</string>
+    <string name="satellite_third_screen">Satellite Third Screen</string>
+    <string name="b_finish">Finish</string>
+    <string name="eyoj_satellites_information">Eyoj Satellite Information</string>
+</resources>
