@@ -50,4 +50,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.kotlinx.serialization)
+
+    implementation(project(":domain"))
+    implementation(project(":core:common"))
 }
