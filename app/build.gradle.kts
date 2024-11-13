@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -21,7 +21,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+        }
         release {
+            isDebuggable = false
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -30,24 +35,35 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
-    kapt {
-        useBuildCache = false
-        correctErrorTypes = false
-        generateStubs = true
-    }
-    packaging {
+
+    /*packaging {
         resources {
             excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }*/
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    kotlin {
+        sourceSets.configureEach {
+            kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
+        }
+        sourceSets.all {
+            languageSettings {
+                languageVersion = "2.0"
+            }
         }
     }
 }
@@ -69,9 +85,23 @@ dependencies {
 
     // hilt
     //kapt(libs.hilt.android.compiler)
-    ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
-    annotationProcessor (libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
+
+    /*val listExcludes = listOf(
+        ":core",
+        ":feature",
+        ":feature:main",
+    )
+
+    rootProject.subprojects.forEach { module ->
+        if (module.path !in listExcludes) implementation(project(module.path))
+    }*/
 
     implementation(project(":eyojnavigation"))
+    implementation(project(":feature:onboarding"))
+    implementation(project(":core:common"))
+    implementation(project(":feature:main:satellitecommunicator"))
+    implementation(project(":feature:main:satellites"))
+    implementation(project(":feature:main:satellitedetail"))
 }

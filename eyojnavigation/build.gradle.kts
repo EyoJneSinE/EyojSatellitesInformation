@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -24,11 +25,27 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    kotlin {
+        sourceSets.configureEach {
+            kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
+        }
+        sourceSets.all {
+            languageSettings {
+                languageVersion = "2.0"
+            }
+        }
     }
 }
 
@@ -44,4 +61,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.hilt.navigation.fragment)
+
+    implementation(libs.hilt.core)
+    ksp(libs.hilt.compiler)
 }

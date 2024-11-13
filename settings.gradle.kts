@@ -21,4 +21,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "EyojSatellittesInformation"
 include(":app")
+include(":core")
 include(":eyojnavigation")
+include(":feature")
+include(":feature:main")
+include(":feature:onboarding")
+include(":feature:main:satellitecommunicator")
+include(":core:common")
+include(":feature:main:satellites")
+include(":feature:main:satellitedetail")

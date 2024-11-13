@@ -10,6 +10,7 @@ import androidx.navigation.createGraph
 import androidx.navigation.fragment.NavHostFragment
 import com.eniskaner.eyojnavigation.NavigationGraph
 import com.eniskaner.eyojsatellittesinformation.databinding.ActivityMainBinding
+import com.eniskaner.onboarding.navigation.OnBoardingNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavGraph() {
         navController.graph = navController.createGraph(
-            startDestination = "",
+            startDestination = OnBoardingNavGraph.ROUTE,
         ) {
             navigationGraph.forEach { navNodes ->
                 navNodes.addNav(this)
