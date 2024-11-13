@@ -42,7 +42,6 @@ captures/
 *.ipr
 *~
 *.swp
-*.json
 
 # Keystore files
 *.jks
