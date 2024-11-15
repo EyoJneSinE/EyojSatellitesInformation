@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/l_satellite"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:padding="8dp">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/statusIndicator"
@@ -36,17 +34,18 @@
             android:id="@+id/satelliteName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Satellite Name"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            android:fontFamily="@font/sofia_sans_bold"
+            android:textColor="@color/eyoj_gray_600"
+            android:textSize="16sp"
+            tools:text="Satellite Name" />
 
         <TextView
             android:id="@+id/satelliteStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sofia_sans_semibold"
             tools:text="Status"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/eyoj_gray_400"
             android:textSize="14sp" />
     </LinearLayout>
 

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/eyoj_gray_100"
+    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.view.SatellitesListFragment">
 
@@ -30,7 +32,7 @@
             app:cardElevation="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/seriesSearchEditText"
+                android:id="@+id/tv_search_satellite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_rounded"
@@ -59,5 +61,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sbl_satellites"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_satellites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:indeterminateTint="@color/eyoj_gray_600"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

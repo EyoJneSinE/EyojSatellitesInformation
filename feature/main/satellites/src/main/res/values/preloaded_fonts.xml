@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/sofia_sans</item>
+        <item>@font/sofia_sans_bold</item>
+        <item>@font/sofia_sans_extrabold</item>
+        <item>@font/sofia_sans_light</item>
+        <item>@font/sofia_sans_medium</item>
+        <item>@font/sofia_sans_semibold</item>
+    </array>
+</resources>

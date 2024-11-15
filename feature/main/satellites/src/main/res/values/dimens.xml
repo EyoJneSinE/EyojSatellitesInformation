@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_x_large">32dp</dimen>
+    <dimen name="status_indicator_size">16dp</dimen>"
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="text_size_status">14sp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+
+</resources>
