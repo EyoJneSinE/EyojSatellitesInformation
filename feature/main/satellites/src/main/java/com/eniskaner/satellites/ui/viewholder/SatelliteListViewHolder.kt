@@ -25,7 +25,7 @@ class SatelliteListViewHolder(
         satelliteName.text = item.name
         satelliteStatus.text = if (item.isActive) "Active" else "Passive"
         lSatellite.setOnClickListener {
-            listener.satelliteClicked(item.id)
+            listener.satelliteClicked(item.id, item.name)
         }
     }
 

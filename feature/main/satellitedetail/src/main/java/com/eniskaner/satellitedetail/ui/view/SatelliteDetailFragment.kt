@@ -5,16 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.eniskaner.common.util.launchAndRepeatWithViewLifecycle
 import com.eniskaner.common.util.parcelable
 import com.eniskaner.satellitecommunicator.SatelliteFeatureCommunicator
+import com.eniskaner.satellitedetail.R
 import com.eniskaner.satellitedetail.databinding.FragmentSatelliteDetailBinding
+import com.eniskaner.satellitedetail.ui.viewmodel.SatelliteDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SatelliteDetailFragment : Fragment() {
 
     lateinit var binding: FragmentSatelliteDetailBinding
+
+    private val satelliteDetailViewModel: SatelliteDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +34,47 @@ class SatelliteDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = arguments?.parcelable(SatelliteFeatureCommunicator.SATELLITE_FEATURE_NAV_KEY) as? SatelliteFeatureCommunicator.SatelliteFeatureArgs
+        val args =
+            arguments?.parcelable(SatelliteFeatureCommunicator.SATELLITE_FEATURE_NAV_KEY) as? SatelliteFeatureCommunicator.SatelliteFeatureArgs
         val satelliteId = args?.satelliteId
-        binding.tvSatelliteDetail.text = satelliteId.toString()
+        val satelliteName = args?.satelliteName
+        if (satelliteId != null && satelliteName != null) {
+            getSatelliteDetailData(satelliteId, satelliteName)
+        }
+        observeSatelliteDetailData()
+    }
 
+    private fun getSatelliteDetailData(satelliteId: Int, satelliteName: String) {
+        satelliteDetailViewModel.getSatelliteDetail(satelliteId, satelliteName)
+    }
+
+    private fun observeSatelliteDetailData() {
+        launchAndRepeatWithViewLifecycle {
+            launch {
+                satelliteDetailViewModel.satelliteDetail.collect { satelliteDetailState ->
+                    val satelliteDetail = satelliteDetailState.satelliteDetail
+                    with(binding) {
+                        tvSatelliteName.text =
+                            getString(R.string.satellite_name_placeholder, satelliteDetail?.name)
+                        tvLaunchDate.text = getString(
+                            R.string.launch_date_placeholder,
+                            satelliteDetail?.firstFlight
+                        )
+                        tvHeightMassValue.text = getString(
+                            R.string.height_mass_placeholder,
+                            satelliteDetail?.height,
+                            satelliteDetail?.mass
+                        )
+                        tvCostValue.text =
+                            getString(R.string.cost_placeholder, satelliteDetail?.costPerLaunch)
+                        tvLastPositionValue.text = getString(
+                            R.string.last_position_placeholder,
+                            satelliteDetail?.posX,
+                            satelliteDetail?.posY
+                        )
+                    }
+                }
+            }
+        }
     }
 }

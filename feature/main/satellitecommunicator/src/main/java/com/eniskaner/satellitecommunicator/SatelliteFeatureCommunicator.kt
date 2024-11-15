@@ -14,6 +14,7 @@ interface SatelliteFeatureCommunicator {
     @Parcelize
     data class SatelliteFeatureArgs(
         val previousRoute: String,
-        val satelliteId: Int? = null
+        val satelliteId: Int? = null,
+        val satelliteName: String? = null
     ) : Parcelable
 }

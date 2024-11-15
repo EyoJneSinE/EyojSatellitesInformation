@@ -162,11 +162,12 @@ class SatellitesListFragment : Fragment(), SatelliteClickListener {
         binding.progressBarSatellites.isVisible = isLoading
     }
 
-    override fun satelliteClicked(id: Int) {
+    override fun satelliteClicked(id: Int, name: String) {
         satelliteDetailCommunicator.launchSatelliteFeature(
             SatelliteFeatureCommunicator.SatelliteFeatureArgs(
                 previousRoute = SatellitesNavGraph.ROUTE,
-                satelliteId = id
+                satelliteId = id,
+                satelliteName = name
             )
         )
     }
