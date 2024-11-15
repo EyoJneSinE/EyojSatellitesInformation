@@ -1,14 +1,13 @@
 package com.eniskaner.satellitedetail.ui.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.eniskaner.common.util.launchAndRepeatWithViewLifecycle
 import com.eniskaner.common.util.parcelable
+import com.eniskaner.common.util.viewBinding
 import com.eniskaner.satellitecommunicator.SatelliteFeatureCommunicator
 import com.eniskaner.satellitedetail.R
 import com.eniskaner.satellitedetail.databinding.FragmentSatelliteDetailBinding
@@ -17,19 +16,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SatelliteDetailFragment : Fragment() {
+class SatelliteDetailFragment : Fragment(R.layout.fragment_satellite_detail) {
 
-    lateinit var binding: FragmentSatelliteDetailBinding
+    private val binding: FragmentSatelliteDetailBinding by viewBinding(
+        FragmentSatelliteDetailBinding::bind
+    )
 
     private val satelliteDetailViewModel: SatelliteDetailViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSatelliteDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,6 +35,7 @@ class SatelliteDetailFragment : Fragment() {
         if (satelliteId != null && satelliteName != null) {
             getSatelliteDetailData(satelliteId, satelliteName)
         }
+        observeLoadingState()
         observeSatelliteDetailData()
     }
 
@@ -76,5 +71,19 @@ class SatelliteDetailFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun observeLoadingState() {
+        launchAndRepeatWithViewLifecycle {
+            launch {
+                satelliteDetailViewModel.satelliteDetail.collect { satelliteDetailState ->
+                    setProgressBarVisibility(satelliteDetailState.isLoading)
+                }
+            }
+        }
+    }
+
+    private fun setProgressBarVisibility(isLoading: Boolean) {
+        binding.progressBarSatellites.isVisible = isLoading
     }
 }

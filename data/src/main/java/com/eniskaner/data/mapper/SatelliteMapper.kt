@@ -28,7 +28,8 @@ class PositionDTOToUIMapper : Mapper<@JvmSuppressWildcards PositionDTO, Position
  * SatelliteDetailDTO to SatelliteDetailUI Mapper
  */
 @JvmSuppressWildcards
-class SatelliteDetailDTOToUIMapper : Mapper<@JvmSuppressWildcards SatelliteDetailDTO, SatelliteDetailUI> {
+class SatelliteDetailDTOToUIMapper :
+    Mapper<@JvmSuppressWildcards SatelliteDetailDTO, SatelliteDetailUI> {
     override fun map(input: SatelliteDetailDTO): SatelliteDetailUI {
         return SatelliteDetailUI(
             id = input.id,
@@ -85,7 +86,8 @@ class PositionListDTOToUIMapper(
  * SatelliteDetailDTO to SatelliteDetailEntity Mapper
  */
 @JvmSuppressWildcards
-class SatelliteDetailDTOToEntity : Mapper<@JvmSuppressWildcards SatelliteDetailDTO, SatelliteDetailEntity> {
+class SatelliteDetailDTOToEntity :
+    Mapper<@JvmSuppressWildcards SatelliteDetailDTO, SatelliteDetailEntity> {
     override fun map(input: SatelliteDetailDTO): SatelliteDetailEntity {
         return SatelliteDetailEntity(
             id = input.id,
@@ -101,7 +103,8 @@ class SatelliteDetailDTOToEntity : Mapper<@JvmSuppressWildcards SatelliteDetailD
  * SatelliteDetailEntity to SatelliteDetailUI Mapper
  */
 @JvmSuppressWildcards
-class SatelliteDetailEntityToUI : Mapper<@JvmSuppressWildcards SatelliteDetailEntity, SatelliteDetailUI> {
+class SatelliteDetailEntityToUI :
+    Mapper<@JvmSuppressWildcards SatelliteDetailEntity, SatelliteDetailUI> {
     override fun map(input: SatelliteDetailEntity): SatelliteDetailUI {
         return SatelliteDetailUI(
             id = input.id,

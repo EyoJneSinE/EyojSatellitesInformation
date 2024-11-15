@@ -6,15 +6,8 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eniskaner.common.util.launchAndRepeatWithViewLifecycle
+import com.eniskaner.common.util.viewBinding
 import com.eniskaner.feature.satellites.R
 import com.eniskaner.feature.satellites.databinding.FragmentSatellitesListBinding
 import com.eniskaner.satellitecommunicator.SatelliteDetailQualifier
@@ -37,9 +31,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SatellitesListFragment : Fragment(), SatelliteClickListener {
+class SatellitesListFragment : Fragment(R.layout.fragment_satellites_list), SatelliteClickListener {
 
-    private lateinit var binding: FragmentSatellitesListBinding
+    private val binding: FragmentSatellitesListBinding by viewBinding(FragmentSatellitesListBinding::bind)
 
     @Inject
     lateinit var navController: NavController
@@ -54,21 +48,6 @@ class SatellitesListFragment : Fragment(), SatelliteClickListener {
 
     private val searchViewModel: SatellitesSearchViewModel by viewModels()
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSatellitesListBinding.inflate(inflater, container, false)
-        activity?.window?.let { window ->
-            val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
-            windowInsetsController.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
-        }
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
@@ -76,7 +55,7 @@ class SatellitesListFragment : Fragment(), SatelliteClickListener {
         setUIWithSearchSatellites()
     }
 
-    private fun initRecyclerView()  {
+    private fun initRecyclerView() {
         binding.rvSatelliteList.apply {
             adapter = satelliteListAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -87,8 +66,11 @@ class SatellitesListFragment : Fragment(), SatelliteClickListener {
                 }
 
                 override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-                    val left = parent.paddingLeft + resources.getDimension(R.dimen.margin_large).toInt()
-                    val right = parent.width - parent.paddingRight - resources.getDimension(R.dimen.margin_large).toInt()
+                    val left =
+                        parent.paddingLeft + resources.getDimension(R.dimen.margin_large).toInt()
+                    val right =
+                        parent.width - parent.paddingRight - resources.getDimension(R.dimen.margin_large)
+                            .toInt()
 
                     for (i in 0 until parent.childCount - 1) {
                         val view = parent.getChildAt(i)
@@ -116,7 +98,7 @@ class SatellitesListFragment : Fragment(), SatelliteClickListener {
     private fun getSatelliteListData() {
         launchAndRepeatWithViewLifecycle {
             launch {
-                satellitesViewModel.stateListUIState.collect {satellitesListUIState ->
+                satellitesViewModel.stateListUIState.collect { satellitesListUIState ->
                     setProgressBar(isLoading = satellitesListUIState.isLoading)
                     satelliteListAdapter.submitList(satellitesListUIState.satelliteList)
                 }
@@ -171,6 +153,4 @@ class SatellitesListFragment : Fragment(), SatelliteClickListener {
             )
         )
     }
-
-
 }

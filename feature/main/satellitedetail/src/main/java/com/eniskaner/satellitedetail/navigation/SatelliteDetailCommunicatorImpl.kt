@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SatelliteDetailCommunicatorImpl @Inject constructor(
     private val navController: NavController
-): SatelliteFeatureCommunicator {
+) : SatelliteFeatureCommunicator {
 
     override fun launchSatelliteFeature(satelliteDetailArgs: SatelliteFeatureCommunicator.SatelliteFeatureArgs) {
         navController.navigateWithAnimation(

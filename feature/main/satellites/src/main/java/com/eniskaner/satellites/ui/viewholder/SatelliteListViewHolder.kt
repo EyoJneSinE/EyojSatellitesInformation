@@ -28,5 +28,4 @@ class SatelliteListViewHolder(
             listener.satelliteClicked(item.id, item.name)
         }
     }
-
 }

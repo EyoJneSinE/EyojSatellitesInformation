@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SatellitesSearchViewModel @Inject constructor(
     private val searchSatelliteListUseCase: GetSearchSatelliteListUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _stateSearchUIState = MutableStateFlow(SatelliteListUIState())
     val stateSearchUIState = _stateSearchUIState.asStateFlow()
@@ -38,6 +38,7 @@ class SatellitesSearchViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is Resource.Error -> {
                         _stateSearchUIState.update {
                             it.copy(
@@ -46,6 +47,7 @@ class SatellitesSearchViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is Resource.Loading -> {
                         _stateSearchUIState.update {
                             it.copy(

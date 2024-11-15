@@ -6,20 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.eniskaner.common.util.viewBinding
 import com.eniskaner.feature.onboarding.R
 import com.eniskaner.feature.onboarding.databinding.FragmentSatelliteFirstScreenBinding
 
-class SatelliteFirstScreenFragment : Fragment() {
+class SatelliteFirstScreenFragment : Fragment(R.layout.fragment_satellite_first_screen) {
 
-    private lateinit var binding: FragmentSatelliteFirstScreenBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSatelliteFirstScreenBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val binding: FragmentSatelliteFirstScreenBinding by viewBinding(FragmentSatelliteFirstScreenBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

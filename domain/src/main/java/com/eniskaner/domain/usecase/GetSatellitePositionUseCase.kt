@@ -25,9 +25,11 @@ class GetSatellitePositionUseCase @Inject constructor(
                         delay(3000L)
                     }
                 }
+
                 is Resource.Error -> {
                     emit(Resource.Error(resource.message ?: ""))
                 }
+
                 is Resource.Loading -> {
                     emit(Resource.Loading())
                 }

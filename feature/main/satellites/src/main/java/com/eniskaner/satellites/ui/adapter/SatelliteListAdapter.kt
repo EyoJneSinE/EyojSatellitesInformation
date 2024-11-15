@@ -9,7 +9,7 @@ import com.eniskaner.satellites.ui.viewholder.SatelliteListViewHolder
 
 class SatelliteListAdapter(
     private val listener: SatelliteClickListener
-): ListAdapter<SatelliteUI, SatelliteListViewHolder>(SatelliteDiffUtil()) {
+) : ListAdapter<SatelliteUI, SatelliteListViewHolder>(SatelliteDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

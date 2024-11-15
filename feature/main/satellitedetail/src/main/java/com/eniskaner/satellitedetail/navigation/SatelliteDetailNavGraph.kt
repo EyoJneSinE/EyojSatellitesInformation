@@ -7,7 +7,7 @@ import com.eniskaner.eyojnavigation.NavigationGraph
 import com.eniskaner.satellitedetail.ui.view.SatelliteDetailFragment
 import javax.inject.Inject
 
-class SatelliteDetailNavGraph @Inject constructor(): NavigationGraph {
+class SatelliteDetailNavGraph @Inject constructor() : NavigationGraph {
 
     override fun addNav(navGraphBuilder: NavGraphBuilder) {
         navGraphBuilder.apply {

@@ -2,8 +2,8 @@ package com.eniskaner.satellitedetail.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.eniskaner.common.util.Constants.DEFAULT_ERROR_MESSAGE
 import com.eniskaner.common.util.Resource
-import com.eniskaner.domain.model.SatelliteDetailUI
 import com.eniskaner.domain.usecase.GetSatelliteDetailUseCase
 import com.eniskaner.domain.usecase.GetSatellitePositionUseCase
 import com.eniskaner.satellitedetail.ui.model.SatelliteDetailUIModel
@@ -53,15 +53,27 @@ class SatelliteDetailViewModel @Inject constructor(
                     }
 
                     detailResource is Resource.Error -> {
-
+                        _satelliteDetail.update {
+                            it.copy(
+                                error = detailResource.message ?: DEFAULT_ERROR_MESSAGE
+                            )
+                        }
                     }
 
                     positionResource is Resource.Error -> {
-
+                        _satelliteDetail.update {
+                            it.copy(
+                                error = detailResource.message ?: DEFAULT_ERROR_MESSAGE
+                            )
+                        }
                     }
 
                     detailResource is Resource.Loading || positionResource is Resource.Loading -> {
-
+                        _satelliteDetail.update {
+                            it.copy(
+                                isLoading = true
+                            )
+                        }
                     }
                 }
             }.collect {}

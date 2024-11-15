@@ -11,7 +11,9 @@ import androidx.navigation.NavController
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.AnimationListener
 import com.eniskaner.common.preferences.PreferencesManager
+import com.eniskaner.common.util.viewBinding
 import com.eniskaner.eyojnavigation.navigateWithAnimation
+import com.eniskaner.feature.onboarding.R
 import com.eniskaner.feature.onboarding.databinding.FragmentSatelliteSplashBinding
 import com.eniskaner.onboarding.navigation.OnBoardingNavGraph
 import com.eniskaner.satellitecommunicator.SatelliteFeatureCommunicator
@@ -22,9 +24,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SatelliteSplashFragment : Fragment() {
+class SatelliteSplashFragment : Fragment(R.layout.fragment_satellite_splash) {
 
-    private lateinit var binding: FragmentSatelliteSplashBinding
+    private val  binding: FragmentSatelliteSplashBinding by viewBinding(FragmentSatelliteSplashBinding::bind)
 
     @Inject
     lateinit var navController: NavController
@@ -35,14 +37,6 @@ class SatelliteSplashFragment : Fragment() {
     @Inject
     @SatelliteListQualifierForSplashScreen
     lateinit var satelliteFeatureCommunicator: SatelliteFeatureCommunicator
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSatelliteSplashBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

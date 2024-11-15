@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class SatelliteLocalDataSourceImpl @Inject constructor(
     private val satellitesDatabase: SatellitesDatabase
-): SatelliteLocalDataSource {
+) : SatelliteLocalDataSource {
 
     override suspend fun getSatelliteDetail(id: Int): SatelliteDetailEntity? =
         satellitesDatabase.getSatelliteDao().getSatelliteDetail(id)
