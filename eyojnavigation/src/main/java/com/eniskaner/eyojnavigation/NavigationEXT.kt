@@ -16,7 +16,7 @@ fun NavController.navigationWithArgs(route: String, args: Bundle? = null, navOpt
 
 @SuppressLint("RestrictedApi")
 fun NavController.navigateWithAnimation(route: String, args: Bundle? = null, popUpTo: String? = null, inclusive: Boolean = false) {
-    findDestination(route)?.id?.let { destinationId ->
+    findDestination(route = route)?.id?.let { destinationId ->
         val navigationOptions = NavOptions.Builder().apply {
             setEnterAnim(R.anim.slide_right_to_left_enter)
             setExitAnim(R.anim.slide_right_to_left_out)

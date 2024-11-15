@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.eniskaner.common.util.parcelable
 import com.eniskaner.satellitecommunicator.SatelliteFeatureCommunicator
 import com.eniskaner.satellitedetail.databinding.FragmentSatelliteDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SatelliteDetailFragment : Fragment() {
 
     lateinit var binding: FragmentSatelliteDetailBinding

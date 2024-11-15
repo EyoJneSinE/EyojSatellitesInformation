@@ -13,7 +13,7 @@ class SatelliteFeatureCommunicatorImpl @Inject constructor(
         navController.navigateWithAnimation(
             route = SatellitesNavGraph.ROUTE,
             popUpTo = satelliteFeatureArgs.previousRoute,
-            inclusive = true
+            inclusive = false
         )
     }
 }

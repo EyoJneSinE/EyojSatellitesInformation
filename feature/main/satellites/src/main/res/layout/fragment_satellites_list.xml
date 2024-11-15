@@ -6,17 +6,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.view.SatellitesListFragment">
 
-
-    <TextView
-        android:id="@+id/satellite_list_fragment_title"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/sbl_satellites"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/satellite_list_fragment_title"
-        android:textSize="28sp"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/rv_satellite_list"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bg_white_rounded"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/seriesSearchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:submitBackground="@drawable/bg_white_rounded"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                tools:layout_editor_absoluteX="21dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_satellite_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_satellite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbl_satellites"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,6 @@ class SatelliteDetailCommunicatorImpl @Inject constructor(
         navController.navigateWithAnimation(
             route = SatelliteDetailNavGraph.ROUTE,
             args = bundleOf(SatelliteFeatureCommunicator.SATELLITE_FEATURE_NAV_KEY to satelliteDetailArgs),
-            popUpTo = satelliteDetailArgs.previousRoute,
-            inclusive = true
         )
     }
 }
