@@ -14,7 +14,8 @@ import com.eniskaner.domain.model.SatelliteUI
 /**
  * PositionDTO to PositionUI Mapper
  */
-class PositionDTOToUIMapper : Mapper<PositionDTO, PositionUI> {
+@JvmSuppressWildcards
+class PositionDTOToUIMapper : Mapper<@JvmSuppressWildcards PositionDTO, PositionUI> {
     override fun map(input: PositionDTO): PositionUI {
         return PositionUI(
             posX = input.posX,
@@ -26,7 +27,8 @@ class PositionDTOToUIMapper : Mapper<PositionDTO, PositionUI> {
 /**
  * SatelliteDetailDTO to SatelliteDetailUI Mapper
  */
-class SatelliteDetailDTOToUIMapper : Mapper<SatelliteDetailDTO, SatelliteDetailUI> {
+@JvmSuppressWildcards
+class SatelliteDetailDTOToUIMapper : Mapper<@JvmSuppressWildcards SatelliteDetailDTO, SatelliteDetailUI> {
     override fun map(input: SatelliteDetailDTO): SatelliteDetailUI {
         return SatelliteDetailUI(
             id = input.id,
@@ -41,7 +43,8 @@ class SatelliteDetailDTOToUIMapper : Mapper<SatelliteDetailDTO, SatelliteDetailU
 /**
  * SatelliteDTO to SatelliteUI Mapper
  */
-class SatelliteDTOToUIMapper : Mapper<SatelliteDTO, SatelliteUI> {
+@JvmSuppressWildcards
+class SatelliteDTOToUIMapper : Mapper<@JvmSuppressWildcards SatelliteDTO, SatelliteUI> {
     override fun map(input: SatelliteDTO): SatelliteUI {
         return SatelliteUI(
             id = input.id,
@@ -54,8 +57,9 @@ class SatelliteDTOToUIMapper : Mapper<SatelliteDTO, SatelliteUI> {
 /**
  * SatellitePositionDTO to SatellitePositionUI Mapper
  */
+@JvmSuppressWildcards
 class SatellitePositionDTOToUIMapper(
-    private val positionMapper: Mapper<PositionDTO, PositionUI>
+    private val positionMapper: Mapper<@JvmSuppressWildcards PositionDTO, PositionUI>
 ) : Mapper<SatellitePositionDTO, SatellitePositionUI> {
     override fun map(input: SatellitePositionDTO): SatellitePositionUI {
         return SatellitePositionUI(
@@ -68,8 +72,9 @@ class SatellitePositionDTOToUIMapper(
 /**
  * SatellitePositionDTO to SatellitePositionUI Mapper
  */
+@JvmSuppressWildcards
 class PositionListDTOToUIMapper(
-    private val satellitePositionMapper: Mapper<SatellitePositionDTO, SatellitePositionUI>
+    private val satellitePositionMapper: Mapper<@JvmSuppressWildcards SatellitePositionDTO, SatellitePositionUI>
 ) : Mapper<PositionListDTO, List<SatellitePositionUI>> {
     override fun map(input: PositionListDTO): List<SatellitePositionUI> {
         return input.list.map { satellitePositionMapper.map(it) }
@@ -79,9 +84,8 @@ class PositionListDTOToUIMapper(
 /**
  * SatelliteDetailDTO to SatelliteDetailEntity Mapper
  */
-class SatelliteDetailDTOToEntity(
-    private val satelliteDetailEntityMapper: Mapper<SatelliteDetailDTO, SatelliteDetailEntity>
-) : Mapper<SatelliteDetailDTO, SatelliteDetailEntity> {
+@JvmSuppressWildcards
+class SatelliteDetailDTOToEntity : Mapper<@JvmSuppressWildcards SatelliteDetailDTO, SatelliteDetailEntity> {
     override fun map(input: SatelliteDetailDTO): SatelliteDetailEntity {
         return SatelliteDetailEntity(
             id = input.id,
@@ -96,9 +100,8 @@ class SatelliteDetailDTOToEntity(
 /**
  * SatelliteDetailEntity to SatelliteDetailUI Mapper
  */
-class SatelliteDetailEntityToUI(
-    private val satelliteDetailEntityMapper: Mapper<SatelliteDetailEntity, SatelliteDetailUI>
-) : Mapper<SatelliteDetailEntity, SatelliteDetailUI> {
+@JvmSuppressWildcards
+class SatelliteDetailEntityToUI : Mapper<@JvmSuppressWildcards SatelliteDetailEntity, SatelliteDetailUI> {
     override fun map(input: SatelliteDetailEntity): SatelliteDetailUI {
         return SatelliteDetailUI(
             id = input.id,

@@ -7,7 +7,8 @@ import com.eniskaner.data.room.entity.SatelliteDetailEntity
 
 @Database(
     entities = [SatelliteDetailEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = true
 )
 abstract class SatellitesDatabase : RoomDatabase() {
 

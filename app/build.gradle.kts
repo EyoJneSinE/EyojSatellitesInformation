@@ -104,4 +104,6 @@ dependencies {
     implementation(project(":feature:main:satellitecommunicator"))
     implementation(project(":feature:main:satellites"))
     implementation(project(":feature:main:satellitedetail"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
 }

@@ -77,4 +77,5 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":feature:main:satellitecommunicator"))
     implementation(project(":feature:main:satellitedetail"))
+    implementation(project(":domain"))
 }
