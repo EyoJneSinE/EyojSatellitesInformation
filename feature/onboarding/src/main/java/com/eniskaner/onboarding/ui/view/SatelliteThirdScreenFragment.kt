@@ -11,6 +11,7 @@ import com.eniskaner.common.util.viewBinding
 import com.eniskaner.feature.onboarding.R
 import com.eniskaner.feature.onboarding.databinding.FragmentSatelliteThirdScreenBinding
 import com.eniskaner.onboarding.navigation.OnBoardingNavGraph
+import com.eniskaner.onboarding.ui.util.updateViewPagerIndex
 import com.eniskaner.satellitecommunicator.SatelliteFeatureCommunicator
 import com.eniskaner.satellitecommunicator.SatellitesListQualifierForOnBoardingScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,9 +44,7 @@ class SatelliteThirdScreenFragment : Fragment(R.layout.fragment_satellite_third_
             )
         }
         bPreviousSatelliteThirdScreen.setOnClickListener {
-            activity?.findViewById<ViewPager2>(R.id.satellite_view_pager)?.apply {
-                currentItem = --currentItem
-            }
+            updateViewPagerIndex(increment = false)
         }
     }
 }

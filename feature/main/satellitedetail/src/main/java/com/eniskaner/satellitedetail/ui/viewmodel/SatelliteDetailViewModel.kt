@@ -2,8 +2,8 @@ package com.eniskaner.satellitedetail.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.eniskaner.common.util.Constants.DEFAULT_DELAY
-import com.eniskaner.common.util.Constants.DEFAULT_ERROR_MESSAGE
+import com.eniskaner.common.util.Constants.Delays.DEFAULT_DELAY
+import com.eniskaner.common.util.Constants.ErrorMessages.DEFAULT_ERROR_MESSAGE
 import com.eniskaner.common.util.Resource
 import com.eniskaner.domain.usecase.GetSatelliteDetailUseCase
 import com.eniskaner.domain.usecase.GetSatellitePositionUseCase

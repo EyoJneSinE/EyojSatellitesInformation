@@ -3,8 +3,8 @@ package com.eniskaner.data.di
 import android.content.Context
 import android.content.res.AssetManager
 import androidx.room.Room
+import com.eniskaner.common.util.Constants.DatabaseConstants.SATELLITE_DB_NAME
 import com.eniskaner.data.room.database.SatellitesDatabase
-import com.eniskaner.data.util.Constants.SATELLITE_DB_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

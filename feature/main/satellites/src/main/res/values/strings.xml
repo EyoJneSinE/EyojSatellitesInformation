@@ -3,4 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="satellite_list_fragment_title">Satellite List Fragment</string>
     <string name="search_hint">Search ...</string>
+    <string name="active_status">Active</string>
+    <string name="passive_status">Passive</string>
 </resources>

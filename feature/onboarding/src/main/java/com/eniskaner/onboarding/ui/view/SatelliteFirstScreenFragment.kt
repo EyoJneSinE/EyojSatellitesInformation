@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.eniskaner.common.util.viewBinding
 import com.eniskaner.feature.onboarding.R
 import com.eniskaner.feature.onboarding.databinding.FragmentSatelliteFirstScreenBinding
+import com.eniskaner.onboarding.ui.util.updateViewPagerIndex
 
 class SatelliteFirstScreenFragment : Fragment(R.layout.fragment_satellite_first_screen) {
 
@@ -20,10 +21,8 @@ class SatelliteFirstScreenFragment : Fragment(R.layout.fragment_satellite_first_
     }
 
     private fun setButton() = with(binding) {
-        bSatelliteFirstScreen.setOnClickListener {
-            activity?.findViewById<ViewPager2>(R.id.satellite_view_pager)?.apply {
-                currentItem = ++currentItem
-            }
+        bNextSatelliteFirstScreen.setOnClickListener {
+            updateViewPagerIndex(increment = true)
         }
     }
 }

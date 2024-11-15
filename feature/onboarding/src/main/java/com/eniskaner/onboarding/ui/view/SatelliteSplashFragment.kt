@@ -1,32 +1,30 @@
 package com.eniskaner.onboarding.ui.view
 
-import android.animation.Animator
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.AnimationListener
 import com.eniskaner.common.preferences.PreferencesManager
+import com.eniskaner.common.util.launchAndRepeatWithViewLifecycle
 import com.eniskaner.common.util.viewBinding
 import com.eniskaner.eyojnavigation.navigateWithAnimation
 import com.eniskaner.feature.onboarding.R
 import com.eniskaner.feature.onboarding.databinding.FragmentSatelliteSplashBinding
 import com.eniskaner.onboarding.navigation.OnBoardingNavGraph
+import com.eniskaner.onboarding.ui.util.addAnimatorEndListener
 import com.eniskaner.satellitecommunicator.SatelliteFeatureCommunicator
 import com.eniskaner.satellitecommunicator.SatelliteListQualifierForSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SatelliteSplashFragment : Fragment(R.layout.fragment_satellite_splash) {
 
-    private val  binding: FragmentSatelliteSplashBinding by viewBinding(FragmentSatelliteSplashBinding::bind)
+    private val binding: FragmentSatelliteSplashBinding by viewBinding(
+        FragmentSatelliteSplashBinding::bind
+    )
 
     @Inject
     lateinit var navController: NavController
@@ -40,19 +38,16 @@ class SatelliteSplashFragment : Fragment(R.layout.fragment_satellite_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-            binding.animationView.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator) {}
+        setAnimatorEndListener()
+    }
 
-                override fun onAnimationEnd(animation: Animator) {
+    private fun setAnimatorEndListener() {
+        launchAndRepeatWithViewLifecycle {
+            launch {
+                binding.animationView.addAnimatorEndListener {
                     navigateToNextScreen()
                 }
-
-                override fun onAnimationCancel(animation: Animator) {}
-
-                override fun onAnimationRepeat(animation: Animator) {}
-
-            })
+            }
         }
     }
 

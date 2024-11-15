@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 
+
 @SuppressLint("RestrictedApi")
 fun NavController.navigationWithArgs(route: String, args: Bundle? = null, navOptions: NavOptions? = null) {
+
     findDestination(route = route)?.id?.let { destinationId ->
         val navigationOptions = navOptions ?: NavOptions.Builder()
             .build()

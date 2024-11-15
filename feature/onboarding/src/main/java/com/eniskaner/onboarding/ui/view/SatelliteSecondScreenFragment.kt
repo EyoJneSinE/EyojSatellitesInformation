@@ -1,14 +1,12 @@
 package com.eniskaner.onboarding.ui.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
 import com.eniskaner.common.util.viewBinding
 import com.eniskaner.feature.onboarding.R
 import com.eniskaner.feature.onboarding.databinding.FragmentSatelliteSecondScreenBinding
+import com.eniskaner.onboarding.ui.util.updateViewPagerIndex
 
 class SatelliteSecondScreenFragment : Fragment(R.layout.fragment_satellite_second_screen) {
 
@@ -21,14 +19,10 @@ class SatelliteSecondScreenFragment : Fragment(R.layout.fragment_satellite_secon
 
     private fun setButtons() = with(binding) {
         bNextSatelliteSecondScreen.setOnClickListener {
-            activity?.findViewById<ViewPager2>(R.id.satellite_view_pager)?.apply {
-                currentItem = ++currentItem
-            }
+            updateViewPagerIndex(increment = true)
         }
         bPreviousSatelliteSecondScreen.setOnClickListener {
-            activity?.findViewById<ViewPager2>(R.id.satellite_view_pager)?.apply {
-                currentItem = --currentItem
-            }
+            updateViewPagerIndex(increment = false)
         }
     }
 }

@@ -1,11 +1,14 @@
 package com.eniskaner.satellites.ui.viewholder
 
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.eniskaner.domain.model.SatelliteUI
 import com.eniskaner.feature.satellites.R
 import com.eniskaner.feature.satellites.databinding.ItemSatelliteBinding
 import com.eniskaner.satellites.ui.adapter.SatelliteClickListener
+import com.eniskaner.satellites.ui.util.setAlphaBasedOnStateForTextView
+import com.eniskaner.satellites.ui.util.setAlphaBasedOnStateForView
+import com.eniskaner.satellites.ui.util.setBackgroundBasedOnState
+import com.eniskaner.satellites.ui.util.setTextBasedOnState
 
 class SatelliteListViewHolder(
     val binding: ItemSatelliteBinding,
@@ -13,18 +16,23 @@ class SatelliteListViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindSatelliteItem(item: SatelliteUI) = with(binding) {
-        val background = if (item.isActive) {
-            AppCompatResources.getDrawable(root.context, R.drawable.indicator_active)
-        } else {
-            AppCompatResources.getDrawable(root.context, R.drawable.indicator_inactive)
-        }
-        statusIndicator.background = background
-        val alphaValue = if (item.isActive) 1f else 0.4f
-        statusIndicator.alpha = alphaValue
-        satelliteName.alpha = alphaValue
-        satelliteStatus.alpha = alphaValue
+        statusIndicator.setBackgroundBasedOnState(
+            isActive = item.isActive,
+            activeDrawableRes = R.drawable.indicator_active,
+            inactiveDrawableRes = R.drawable.indicator_inactive
+        )
+
+        statusIndicator.setAlphaBasedOnStateForView(item.isActive)
+        satelliteName.setAlphaBasedOnStateForTextView(item.isActive)
+        satelliteStatus.setAlphaBasedOnStateForTextView(item.isActive)
         satelliteName.text = item.name
-        satelliteStatus.text = if (item.isActive) "Active" else "Passive"
+
+        satelliteStatus.setTextBasedOnState(
+            isActive = item.isActive,
+            activeTextRes = R.string.active_status,
+            passiveTextRes = R.string.passive_status
+        )
+
         lSatellite.setOnClickListener {
             listener.satelliteClicked(item.id, item.name)
         }

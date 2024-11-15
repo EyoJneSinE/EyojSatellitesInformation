@@ -1,13 +1,13 @@
 package com.eniskaner.data.datasource
 
 import android.content.res.AssetManager
+import com.eniskaner.common.util.Constants.AssetConstants.POSITIONS
+import com.eniskaner.common.util.Constants.AssetConstants.SATELLITE_DETAIL
+import com.eniskaner.common.util.Constants.AssetConstants.SATELLITE_LIST
 import com.eniskaner.data.model.PositionListDTO
 import com.eniskaner.data.model.SatelliteDTO
 import com.eniskaner.data.model.SatelliteDetailDTO
 import com.eniskaner.data.model.SatellitePositionDTO
-import com.eniskaner.data.util.Constants.POSITIONS
-import com.eniskaner.data.util.Constants.SATELLITE_DETAIL
-import com.eniskaner.data.util.Constants.SATELLITE_LIST
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream

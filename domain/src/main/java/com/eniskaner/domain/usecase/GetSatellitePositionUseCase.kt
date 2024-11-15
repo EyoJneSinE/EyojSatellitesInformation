@@ -1,5 +1,6 @@
 package com.eniskaner.domain.usecase
 
+import com.eniskaner.common.util.Constants.Delays.SATELLITE_POSITION_DELAY
 import com.eniskaner.common.util.Resource
 import com.eniskaner.domain.model.PositionUI
 import com.eniskaner.domain.repository.SatelliteRepository
@@ -22,17 +23,13 @@ class GetSatellitePositionUseCase @Inject constructor(
                         val position = resource.data?.positions?.getOrNull(index % bound)
                         emit(Resource.Success(position))
                         index++
-                        delay(3000L)
+                        delay(SATELLITE_POSITION_DELAY)
                     }
                 }
 
-                is Resource.Error -> {
-                    emit(Resource.Error(resource.message ?: ""))
-                }
+                is Resource.Error -> emit(Resource.Error(resource.message ?: ""))
 
-                is Resource.Loading -> {
-                    emit(Resource.Loading())
-                }
+                is Resource.Loading -> emit(Resource.Loading())
             }
         }
     }

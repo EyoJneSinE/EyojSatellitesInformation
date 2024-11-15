@@ -1,5 +1,6 @@
 package com.eniskaner.data.repository
 
+import com.eniskaner.common.util.Constants.ErrorMessages.DEFAULT_ERROR_MESSAGE
 import com.eniskaner.common.util.Resource
 import com.eniskaner.data.datasource.SatelliteDataSource
 import com.eniskaner.data.datasource.SatelliteLocalDataSource
@@ -8,7 +9,6 @@ import com.eniskaner.data.model.SatelliteDTO
 import com.eniskaner.data.model.SatelliteDetailDTO
 import com.eniskaner.data.model.SatellitePositionDTO
 import com.eniskaner.data.room.entity.SatelliteDetailEntity
-import com.eniskaner.data.util.Constants.DEFAULT_ERROR_MESSAGE
 import com.eniskaner.domain.model.SatelliteDetailUI
 import com.eniskaner.domain.model.SatellitePositionUI
 import com.eniskaner.domain.model.SatelliteUI

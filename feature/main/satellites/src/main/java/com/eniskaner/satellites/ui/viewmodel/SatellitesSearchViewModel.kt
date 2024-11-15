@@ -2,7 +2,7 @@ package com.eniskaner.satellites.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.eniskaner.common.util.Constants.DEFAULT_DELAY
+import com.eniskaner.common.util.Constants.Delays.DEFAULT_DELAY
 import com.eniskaner.common.util.Resource
 import com.eniskaner.domain.usecase.GetSearchSatelliteListUseCase
 import com.eniskaner.satellites.ui.event.SatelliteEvent
