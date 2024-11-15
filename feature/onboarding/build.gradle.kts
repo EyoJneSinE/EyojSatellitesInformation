@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.hilt.navigation.fragment)
 
+    implementation(libs.airbnb.lottie)
+
     implementation(project(":eyojnavigation"))
     implementation(project(":core:common"))
     implementation(project(":feature:main:satellitecommunicator"))

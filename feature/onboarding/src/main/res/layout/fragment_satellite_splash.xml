@@ -6,15 +6,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.view.SatelliteSplashFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="28sp"
-        android:textColor="@color/cardview_dark_background"
-        android:text="@string/eyoj_satellites_information"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:lottie_autoPlay="true"
+        app:lottie_repeatMode="restart"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="1"
+        android:layout_margin="@dimen/margin_xsmall"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:lottie_rawRes="@raw/satellite"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

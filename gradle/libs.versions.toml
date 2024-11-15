@@ -21,6 +21,7 @@ javaxInject = "1"
 kotlin-parcelize = "2.0.20"
 room = "2.6.1"
 kotlinxSerialization = "1.6.3"
+lottieVersion = "6.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,8 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
+#Lottie Animation
+airbnb-lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottieVersion"}
 
 #ROOM
 androidx-room-runtime = { group = "androidx.room", name = "room-ktx", version.ref = "room" }

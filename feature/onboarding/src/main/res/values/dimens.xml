@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="product_search_input_corner_radius">6dp</dimen>
+    <dimen name="product_item_card_radius">16dp</dimen>
+
+    <dimen name="margin_large">64dp</dimen>
+    <dimen name="margin_medium">40dp</dimen>
+    <dimen name="margin_small">24dp</dimen>
+    <dimen name="margin_xsmall">16dp</dimen>
+
+    <dimen name="text_size_title">36sp</dimen>
+    <dimen name="text_size_description">24sp</dimen>
+    <dimen name="text_size_logo">44sp</dimen>
+
+    <dimen name="image_margin_top">16dp</dimen>
+
+    <dimen name="button_corner_radius">6dp</dimen>
+
+    <dimen name="card_corner_radius">20dp</dimen>
+
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="button_stroke_width">2dp</dimen>
+</resources>

@@ -8,4 +8,11 @@
     <string name="satellite_third_screen">Satellite Third Screen</string>
     <string name="b_finish">Finish</string>
     <string name="eyoj_satellites_information">Eyoj Satellite Information</string>
+    <string name="satellites_info">Satellites Info</string>
+    <string name="satellites_info_onboarding1">Quick Access to Satellite Information</string>
+    <string name="first_screen_description">Quickly check the current status of satellites. Each satellite is color-coded based on its active or inactive status. Select a satellite from the list to view detailed information.</string>
+    <string name="satellites_info_onboarding2">Satellite Details</string>
+    <string name="second_screen_description">Access comprehensive information about the selected satellite. You can view technical details such as height, mass, and launch cost, along with the satellite\'s latest position.</string>
+    <string name="satellites_info_onboarding3">Satellite Position Tracking</string>
+    <string name="third_screen_description">View the latest position information of satellites and monitor their movements. Real-time position updates allow you to track each satellite in detail.</string>
 </resources>
