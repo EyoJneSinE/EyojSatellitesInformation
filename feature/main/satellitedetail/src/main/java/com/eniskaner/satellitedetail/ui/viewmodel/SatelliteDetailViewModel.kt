@@ -2,6 +2,7 @@ package com.eniskaner.satellitedetail.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.eniskaner.common.util.Constants.DEFAULT_DELAY
 import com.eniskaner.common.util.Constants.DEFAULT_ERROR_MESSAGE
 import com.eniskaner.common.util.Resource
 import com.eniskaner.domain.usecase.GetSatelliteDetailUseCase
@@ -9,6 +10,7 @@ import com.eniskaner.domain.usecase.GetSatellitePositionUseCase
 import com.eniskaner.satellitedetail.ui.model.SatelliteDetailUIModel
 import com.eniskaner.satellitedetail.ui.state.SatelliteDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
@@ -46,7 +48,8 @@ class SatelliteDetailViewModel @Inject constructor(
                                         posX = satellitePosition.posX,
                                         posY = satellitePosition.posY,
                                         name = satelliteName
-                                    )
+                                    ),
+                                    isLoading = false
                                 )
                             }
                         }
@@ -55,7 +58,8 @@ class SatelliteDetailViewModel @Inject constructor(
                     detailResource is Resource.Error -> {
                         _satelliteDetail.update {
                             it.copy(
-                                error = detailResource.message ?: DEFAULT_ERROR_MESSAGE
+                                error = detailResource.message ?: DEFAULT_ERROR_MESSAGE,
+                                isLoading = false
                             )
                         }
                     }
@@ -63,7 +67,8 @@ class SatelliteDetailViewModel @Inject constructor(
                     positionResource is Resource.Error -> {
                         _satelliteDetail.update {
                             it.copy(
-                                error = detailResource.message ?: DEFAULT_ERROR_MESSAGE
+                                error = detailResource.message ?: DEFAULT_ERROR_MESSAGE,
+                                isLoading = false
                             )
                         }
                     }
@@ -74,6 +79,7 @@ class SatelliteDetailViewModel @Inject constructor(
                                 isLoading = true
                             )
                         }
+                        delay(DEFAULT_DELAY)
                     }
                 }
             }.collect {}

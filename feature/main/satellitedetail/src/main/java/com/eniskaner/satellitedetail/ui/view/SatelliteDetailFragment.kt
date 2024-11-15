@@ -35,7 +35,6 @@ class SatelliteDetailFragment : Fragment(R.layout.fragment_satellite_detail) {
         if (satelliteId != null && satelliteName != null) {
             getSatelliteDetailData(satelliteId, satelliteName)
         }
-        observeLoadingState()
         observeSatelliteDetailData()
     }
 
@@ -47,7 +46,10 @@ class SatelliteDetailFragment : Fragment(R.layout.fragment_satellite_detail) {
         launchAndRepeatWithViewLifecycle {
             launch {
                 satelliteDetailViewModel.satelliteDetail.collect { satelliteDetailState ->
+
+                    setProgressBarVisibility(satelliteDetailState.isLoading)
                     val satelliteDetail = satelliteDetailState.satelliteDetail
+
                     with(binding) {
                         tvSatelliteName.text =
                             getString(R.string.satellite_name_placeholder, satelliteDetail?.name)
@@ -73,17 +75,11 @@ class SatelliteDetailFragment : Fragment(R.layout.fragment_satellite_detail) {
         }
     }
 
-    private fun observeLoadingState() {
-        launchAndRepeatWithViewLifecycle {
-            launch {
-                satelliteDetailViewModel.satelliteDetail.collect { satelliteDetailState ->
-                    setProgressBarVisibility(satelliteDetailState.isLoading)
-                }
-            }
-        }
-    }
-
     private fun setProgressBarVisibility(isLoading: Boolean) {
-        binding.progressBarSatellites.isVisible = isLoading
+        with(binding) {
+            llSatelliteDetail.isVisible = !isLoading
+            progressBarSatellites.isVisible = isLoading
+        }
+
     }
 }

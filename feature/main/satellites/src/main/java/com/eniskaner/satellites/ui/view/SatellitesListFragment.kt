@@ -66,11 +66,9 @@ class SatellitesListFragment : Fragment(R.layout.fragment_satellites_list), Sate
                 }
 
                 override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-                    val left =
-                        parent.paddingLeft + resources.getDimension(R.dimen.margin_large).toInt()
-                    val right =
-                        parent.width - parent.paddingRight - resources.getDimension(R.dimen.margin_large)
-                            .toInt()
+                    val margin = resources.getDimension(R.dimen.margin_small).toInt()
+                    val left = parent.paddingLeft + margin
+                    val right = parent.width - parent.paddingRight - margin
 
                     for (i in 0 until parent.childCount - 1) {
                         val view = parent.getChildAt(i)

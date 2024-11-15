@@ -20,6 +20,7 @@ class SatelliteListViewHolder(
         }
         statusIndicator.background = background
         val alphaValue = if (item.isActive) 1f else 0.4f
+        statusIndicator.alpha = alphaValue
         satelliteName.alpha = alphaValue
         satelliteStatus.alpha = alphaValue
         satelliteName.text = item.name
