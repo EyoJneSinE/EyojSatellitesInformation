@@ -3,7 +3,9 @@ package com.eniskaner.satellites.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eniskaner.common.util.Constants.Delays.DEFAULT_DELAY
+import com.eniskaner.common.util.Constants.ErrorMessages.DEFAULT_ERROR_MESSAGE
 import com.eniskaner.common.util.Resource
+import com.eniskaner.domain.model.SatelliteUI
 import com.eniskaner.domain.usecase.GetSearchSatelliteListUseCase
 import com.eniskaner.satellites.ui.event.SatelliteEvent
 import com.eniskaner.satellites.ui.state.SatelliteListUIState
@@ -43,7 +45,7 @@ class SatellitesSearchViewModel @Inject constructor(
                     is Resource.Error -> {
                         _stateSearchUIState.update {
                             it.copy(
-                                error = resource.message ?: "Error!",
+                                error = resource.message ?: DEFAULT_ERROR_MESSAGE,
                                 isLoading = false
                             )
                         }
@@ -58,6 +60,16 @@ class SatellitesSearchViewModel @Inject constructor(
                         delay(DEFAULT_DELAY)
                     }
                 }
+            }
+        }
+    }
+
+    fun filterSatellites(query: String): List<SatelliteUI> {
+        return if (query.isEmpty()) {
+            _stateSearchUIState.value.searchingSatelliteList
+        } else {
+            _stateSearchUIState.value.searchingSatelliteList.filter {
+                it.name.contains(query.lowercase().trim(), ignoreCase = true)
             }
         }
     }
